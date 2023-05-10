@@ -171,6 +171,7 @@ class MiniWoBInstance(Thread):
             self.index
         )
         options = webdriver.ChromeOptions()
+        options.binary_location = "/Users/llv23/Downloads/dev/chrome_mac/Chromium.app/Contents/MacOS/Chromium"
         options.add_argument(f"window-size={self.window_width},{self.window_height}")
         if self.headless:
             options.add_argument("headless")
@@ -178,7 +179,8 @@ class MiniWoBInstance(Thread):
             options.add_argument("no-sandbox")
         else:
             options.add_argument("app=" + self.url)
-        self.driver = webdriver.Chrome(options=options)
+        chrome_driver_binary = "/Users/llv23/Downloads/dev/chrome_mac/chromedriver"
+        self.driver = webdriver.Chrome(chrome_driver_binary, options=options)
         self.driver.implicitly_wait(5)
         if self.headless:
             self.driver.get(self.url)
